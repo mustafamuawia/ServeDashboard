@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import {
   Box,
@@ -24,6 +24,7 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
 
 function SignIn() {
+  const navigate = useHistory();
   const textColor = useColorModeValue('navy.700', 'white');
   const textColorSecondary = 'gray.400';
   const textColorDetails = useColorModeValue('navy.700', 'secondaryGray.600');
@@ -49,14 +50,13 @@ function SignIn() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/api/login', {
+      const response = await axios.post('http://localhost:8000/api/login', {
         email,
         password,
       });
 
       if (response.data.message === 'Login successful') {
-        // Handle successful login (e.g., redirect to dashboard)
-        console.log('Login successful');
+        navigate.push('/rtl/rtl-default');
       } else {
         setError(response.data.message);
       }
@@ -99,30 +99,6 @@ function SignIn() {
           me='auto'
           mb={{ base: '20px', md: 'auto' }}
         >
-          <Button
-            fontSize='sm'
-            me='0px'
-            mb='26px'
-            py='15px'
-            h='50px'
-            borderRadius='16px'
-            bg={googleBg}
-            color={googleText}
-            fontWeight='500'
-            _hover={googleHover}
-            _active={googleActive}
-            _focus={googleActive}
-          >
-            <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
-            Sign in with Google
-          </Button>
-          <Flex align='center' mb='25px'>
-            <HSeparator />
-            <Text color='gray.400' mx='14px'>
-              or
-            </Text>
-            <HSeparator />
-          </Flex>
           <FormControl>
             <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
               Email<Text color={brandStars}>*</Text>

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Admin;;
+use App\Models\Admin;
 
 class AuthController extends Controller
 {
@@ -20,10 +20,16 @@ class AuthController extends Controller
         $admin = Admin::where('email', $request->email)->first();
 
         if ($admin && Hash::check($request->password, $admin->password)) {
-            // Generate a token or start a session
+            // Generate a token or start a session if needed
             return response()->json(['message' => 'Login successful', 'admin' => $admin]);
         } else {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return response()->json(['message' => 'Logout successful']);
     }
 }

@@ -1,6 +1,4 @@
 import React from "react";
-
-// chakra imports
 import {
   Box,
   Flex,
@@ -21,6 +19,7 @@ import {
 } from "components/scrollbar/Scrollbar";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import PropTypes from "prop-types";
+import { sidebarRoutes } from "routes"; // Import sidebarRoutes
 
 // Assets
 import { IoMenuOutline } from "react-icons/io5";
@@ -54,7 +53,7 @@ function Sidebar(props) {
           renderTrackVertical={renderTrack}
           renderThumbVertical={renderThumb}
           renderView={renderView}>
-          <Content routes={routes} />
+          <Content routes={sidebarRoutes} /> {/* Use sidebarRoutes */}
         </Scrollbars>
       </Box>
     </Box>
@@ -105,7 +104,7 @@ export function SidebarResponsive(props) {
               renderTrackVertical={renderTrack}
               renderThumbVertical={renderThumb}
               renderView={renderView}>
-              <Content routes={routes} />
+              <Content routes={sidebarRoutes} /> {/* Use sidebarRoutes */}
             </Scrollbars>
           </DrawerBody>
         </DrawerContent>
@@ -113,8 +112,8 @@ export function SidebarResponsive(props) {
     </Flex>
   );
 }
-// PROPS
 
+// PROPS
 Sidebar.propTypes = {
   logoText: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object),

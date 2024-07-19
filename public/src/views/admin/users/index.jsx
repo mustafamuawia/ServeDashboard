@@ -97,7 +97,7 @@ const Users = () => {
                 <Td>{user.phone}</Td>
                 <Td>{user.address}</Td>
                 <Td>{user.user_type}</Td>
-                <Td>
+                <Td display="flex" justifyContent="space-between">
                   <Button colorScheme="yellow" size="sm" onClick={() => handleEditUser(user.user_id)}>تعديل</Button>
                   <Button colorScheme="red" size="sm" ml="2" onClick={() => handleDeleteUser(user.user_id)}>حذف</Button>
                 </Td>

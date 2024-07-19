@@ -2,45 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $primaryKey = 'user_id';
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'email',
         'phone',
         'address',
         'user_type',
-    ];
-
-    protected $hidden = [
         'password',
-        'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    public function serviceProvider()
-    {
-        return $this->hasOne(ServiceProvider::class, 'user_id');
-    }
-
-    public function serviceRequests()
-    {
-        return $this->hasMany(ServiceRequest::class, 'user_id');
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class, 'user_id');
-    }
+    // Other model methods and properties
 }

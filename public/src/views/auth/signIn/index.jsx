@@ -16,7 +16,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { HSeparator } from 'components/separator/Separator';
 import DefaultAuth from 'layouts/auth/Default';
 import illustration from 'assets/img/auth/auth.png';
 import { FcGoogle } from 'react-icons/fc';

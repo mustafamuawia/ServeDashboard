@@ -104,9 +104,9 @@ const Services = () => {
               <Td>{service.service_name}</Td>
               <Td>{service.description}</Td>
               <Td>{service.price}</Td>
-              <Td display="flex"  justifyContent="space-between">
+              <Td display="flex" justifyContent="flex-start" gap="2">
                 <Button colorScheme="yellow" size="sm" onClick={() => openEditModal(service)}>تعديل</Button>
-                <Button colorScheme="red" size="sm" ml="2" onClick={() => confirmDelete(service.service_id)}>حذف</Button>
+                <Button colorScheme="red" size="sm" ml="1"  onClick={() => confirmDelete(service.service_id)}>حذف</Button>
               </Td>
             </Tr>
           ))}

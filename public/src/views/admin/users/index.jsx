@@ -113,9 +113,9 @@ const Users = () => {
               <Td>{user.phone}</Td>
               <Td>{user.address}</Td>
               <Td>{user.user_type}</Td>
-              <Td display="flex" justifyContent="space-between">
+              <Td display="flex" justifyContent="flex-start" gap="2">
                 <Button colorScheme="yellow" size="sm" onClick={() => openEditModal(user)}>تعديل</Button>
-                <Button colorScheme="red" size="sm" ml="2" onClick={() => confirmDelete(user.user_id)}>حذف</Button>
+                <Button colorScheme="red" size="sm" ml="1" onClick={() => confirmDelete(user.user_id)}>حذف</Button>
               </Td>
             </Tr>
           ))}

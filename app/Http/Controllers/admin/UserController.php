@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'phone' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'user_type' => 'required|in:Customer,Service Provider,Admin',
@@ -28,37 +28,35 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
-    public function show($id)
+    public function show($user_id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($user_id);
         return response()->json($user, 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $user_id)
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user_id . ',user_id',
             'phone' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'user_type' => 'required|in:Customer,Service Provider,Admin',
         ]);
 
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($user_id);
         $user->update($validatedData);
         return response()->json($user, 200);
     }
 
-    public function destroy($id)
+    public function destroy($user_id)
     {
         try {
-            $user = User::findOrFail($id);
+            $user = User::findOrFail($user_id);
             $user->delete();
-            return response()->json(null, 204);
+            return response()->json(['message' => 'User deleted successfully'], 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'User not found'], 404);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Deletion failed'], 500);
+            return response()->json(['message' => 'User not found'], 404);
         }
     }
 }

@@ -42,11 +42,13 @@ const ServiceProviders = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get('http://localhost:8000/api/users');
-      setUsers(response.data);
+      const serviceProviders = response.data.filter(user => user.user_type === 'Service Provider');
+      setUsers(serviceProviders);
     } catch (error) {
       console.error('Error fetching users:', error);
     }
   };
+  
 
   const fetchServices = async () => {
     try {

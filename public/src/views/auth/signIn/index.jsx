@@ -17,28 +17,17 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import DefaultAuth from 'layouts/auth/Default';
-import illustration from 'assets/img/auth/auth.png';
-import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
 
 function SignIn() {
   const navigate = useHistory();
   const textColor = useColorModeValue('navy.700', 'white');
-  const textColorSecondary = 'gray.400';
-  const textColorDetails = useColorModeValue('navy.700', 'secondaryGray.600');
+  const textColorSecondary = useColorModeValue('gray.400', 'gray.500');
   const textColorBrand = useColorModeValue('brand.500', 'white');
-  const brandStars = useColorModeValue('brand.500', 'brand.400');
-  const googleBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.200');
-  const googleText = useColorModeValue('navy.700', 'white');
-  const googleHover = useColorModeValue(
-    { bg: 'gray.200' },
-    { bg: 'whiteAlpha.300' }
-  );
-  const googleActive = useColorModeValue(
-    { bg: 'secondaryGray.300' },
-    { bg: 'whiteAlpha.200' }
-  );
+  const inputBgColor = useColorModeValue('white', 'gray.700');
+  const inputTextColor = useColorModeValue('gray.700', 'gray.200');
+  const labelColor = useColorModeValue('gray.700', 'gray.200');
 
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState('');
@@ -65,72 +54,74 @@ function SignIn() {
   };
 
   return (
-    <DefaultAuth illustrationBackground={illustration} image={illustration}>
+    <DefaultAuth>
       <Flex
-        maxW={{ base: '100%', md: 'max-content' }}
-        w='100%'
-        mx={{ base: 'auto', lg: '0px' }}
-        me='auto'
-        h='100%'
-        alignItems='start'
-        justifyContent='center'
-        mb={{ base: '30px', md: '60px' }}
-        px={{ base: '25px', md: '0px' }}
-        mt={{ base: '40px', md: '14vh' }}
-        flexDirection='column'
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        minH="100vh"
+        p={5}
+        sx={{
+          '& > *': {
+            zIndex: '1 !important',  // Ensure all elements have higher z-index
+          },
+        }}
       >
-        <Box me='auto'>
-          <Heading color={textColor} fontSize='36px' mb='10px'>
-            Sign In
-          </Heading>
-          <Text mb='36px' ms='4px' color={textColorSecondary} fontWeight='400' fontSize='md'>
-            Enter your email and password to sign in!
-          </Text>
-        </Box>
         <Flex
-          zIndex='2'
-          direction='column'
+          direction="column"
           w={{ base: '100%', md: '420px' }}
-          maxW='100%'
-          background='transparent'
-          borderRadius='15px'
-          mx={{ base: 'auto', lg: 'unset' }}
-          me='auto'
-          mb={{ base: '20px', md: 'auto' }}
+          p={8}
+          background={inputBgColor}
+          borderRadius="15px"
+          boxShadow="lg"
+          mb={8} // Margin bottom to push footer down
         >
+          <Box mb="auto">
+            <Heading color={textColor} fontSize="36px" mb="10px">
+              تسجيل الدخول
+            </Heading>
+            <Text mb="36px" color={textColorSecondary} fontWeight="400" fontSize="md">
+              أدخل بريدك الإلكتروني وكلمة المرور لتسجيل الدخول!
+            </Text>
+          </Box>
           <FormControl>
-            <FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
-              Email<Text color={brandStars}>*</Text>
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px">
+              البريد الإلكتروني<Text color={textColorBrand}>*</Text>
             </FormLabel>
             <Input
               isRequired={true}
-              variant='auth'
-              fontSize='sm'
-              ms={{ base: '0px', md: '0px' }}
-              type='email'
-              placeholder='mail@simmmple.com'
-              mb='24px'
-              fontWeight='500'
-              size='lg'
+              variant="auth"
+              fontSize="sm"
+              type="email"
+              placeholder="mail@simmmple.com"
+              mb="24px"
+              fontWeight="500"
+              size="lg"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              bg={inputBgColor}
+              color={inputTextColor}
+              _placeholder={{ color: inputTextColor }}
             />
-            <FormLabel ms='4px' fontSize='sm' fontWeight='500' color={textColor} display='flex'>
-              Password<Text color={brandStars}>*</Text>
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px">
+              كلمة المرور<Text color={textColorBrand}>*</Text>
             </FormLabel>
-            <InputGroup size='md'>
+            <InputGroup size="md">
               <Input
                 isRequired={true}
-                fontSize='sm'
-                placeholder='Min. 8 characters'
-                mb='24px'
-                size='lg'
+                fontSize="sm"
+                placeholder="8 أحرف على الأقل"
+                mb="24px"
+                size="lg"
                 type={show ? 'text' : 'password'}
-                variant='auth'
+                variant="auth"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                bg={inputBgColor}
+                color={inputTextColor}
+                _placeholder={{ color: inputTextColor }}
               />
-              <InputRightElement display='flex' alignItems='center' mt='4px'>
+              <InputRightElement display="flex" alignItems="center" mt="4px">
                 <Icon
                   color={textColorSecondary}
                   _hover={{ cursor: 'pointer' }}
@@ -139,34 +130,34 @@ function SignIn() {
                 />
               </InputRightElement>
             </InputGroup>
-            <Flex justifyContent='space-between' align='center' mb='24px'>
-              <FormControl display='flex' alignItems='center'>
-                <Checkbox id='remember-login' colorScheme='brandScheme' me='10px' />
-                <FormLabel htmlFor='remember-login' mb='0' fontWeight='normal' color={textColor} fontSize='sm'>
-                  Keep me logged in
+            <Flex justifyContent="space-between" align="center" mb="24px">
+              <FormControl display="flex" alignItems="center">
+                <Checkbox id="remember-login" colorScheme="brandScheme" me="10px" />
+                <FormLabel htmlFor="remember-login" mb="0" fontWeight="normal" color={textColor} fontSize="sm">
+                  تذكرني
                 </FormLabel>
               </FormControl>
-              <NavLink to='/auth/forgot-password'>
-                <Text color={textColorBrand} fontSize='sm' w='124px' fontWeight='500'>
-                  Forgot password?
+              <NavLink to="/auth/forgot-password">
+                <Text color={textColorBrand} fontSize="sm" w="124px" fontWeight="500">
+                  هل نسيت كلمة المرور؟
                 </Text>
               </NavLink>
             </Flex>
             {error && (
-              <Text color='red.500' mb='24px'>
+              <Text color="red.500" mb="24px">
                 {error}
               </Text>
             )}
-            <Button fontSize='sm' variant='brand' fontWeight='500' w='100%' h='50' mb='24px' onClick={handleLogin}>
-              Sign In
+            <Button fontSize="sm" variant="brand" fontWeight="500" w="100%" h="50" mb="24px" onClick={handleLogin}>
+              تسجيل الدخول
             </Button>
           </FormControl>
-          <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
-            <Text color={textColorDetails} fontWeight='400' fontSize='14px'>
-              Not registered yet?
-              <NavLink to='/auth/sign-up'>
-                <Text color={textColorBrand} as='span' ms='5px' fontWeight='500'>
-                  Create an Account
+          <Flex flexDirection="column" justifyContent="center" alignItems="start" maxW="100%" mt="0px">
+            <Text color={textColorSecondary} fontWeight="400" fontSize="14px">
+              ليس لديك حساب؟
+              <NavLink to="/auth/register">
+                <Text color={textColorBrand} as="span" ms="5px" fontWeight="500">
+                  إنشاء حساب
                 </Text>
               </NavLink>
             </Text>

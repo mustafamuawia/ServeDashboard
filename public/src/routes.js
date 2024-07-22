@@ -22,6 +22,7 @@ import RTL from "views/admin/rtl";
 
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
+import Register from "views/auth/register"; // Import the new Register component
 
 // New Component Imports (assume these components are created for respective pages)
 import Users from "views/admin/users";
@@ -37,6 +38,11 @@ const routes = [
     layout: "/auth",
     path: "/sign-in",
     component: SignInCentered,
+  },
+  {
+    layout: "/auth",
+    path: "/register",
+    component: Register, // Add the new route
   },
   {
     name: "لوحة التحكم",

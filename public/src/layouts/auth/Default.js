@@ -6,11 +6,10 @@ import Footer from "components/footer/FooterAuth";
 import FixedPlugin from "components/fixedPlugin/FixedPlugin";
 // Custom components
 import { NavLink } from "react-router-dom";
-// Assets
 
 function AuthIllustration(props) {
   const { children, illustrationBackground } = props;
-  // Chakra color mode
+
   return (
     <Flex position='relative' h='max-content'>
       <Flex
@@ -44,7 +43,7 @@ function AuthIllustration(props) {
           position='absolute'
           right='0px'>
           <Flex
-            bg={`url(${illustrationBackground})`}
+            bg={illustrationBackground ? `url(${illustrationBackground})` : 'none'}  // Conditionally set background
             justify='center'
             align='end'
             w='100%'
@@ -52,7 +51,8 @@ function AuthIllustration(props) {
             bgSize='cover'
             bgPosition='50%'
             position='absolute'
-            borderBottomLeftRadius={{ lg: "120px", xl: "200px" }}></Flex>
+            borderBottomLeftRadius={{ lg: "120px", xl: "200px" }}>
+          </Flex>
         </Box>
         <Footer />
       </Flex>
@@ -60,8 +60,8 @@ function AuthIllustration(props) {
     </Flex>
   );
 }
-// PROPS
 
+// PROPS
 AuthIllustration.propTypes = {
   illustrationBackground: PropTypes.string,
   image: PropTypes.any,

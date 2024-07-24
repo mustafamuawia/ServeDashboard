@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import {
   Box,
@@ -12,7 +12,9 @@ import {
   Text,
   useColorModeValue,
   useColorMode,
+  IconButton,
 } from '@chakra-ui/react';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 import DefaultAuth from 'layouts/auth/Default';
 
 function Register() {
@@ -66,6 +68,16 @@ function Register() {
           textAlign="center"
           mb={8} // Margin bottom to push footer down
         >
+          <Flex justify="space-between" w="100%" mb="16px">
+            <NavLink to="/auth/sign-in">
+              <IconButton
+                icon={<ArrowBackIcon />}
+                aria-label="Back to sign in"
+                variant="ghost"
+                colorScheme="gray"
+              />
+            </NavLink>
+          </Flex>
           <Heading color={textColor} fontSize="36px" mb="10px">
             إنشاء حساب
           </Heading>
@@ -73,7 +85,7 @@ function Register() {
             املأ النموذج أدناه لإنشاء حساب!
           </Text>
           <FormControl>
-            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px">
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px" textAlign="right">
               الاسم
             </FormLabel>
             <Input
@@ -89,7 +101,7 @@ function Register() {
               onChange={(e) => setName(e.target.value)}
               color={inputTextColor}
             />
-            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px">
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px" textAlign="right">
               البريد الإلكتروني
             </FormLabel>
             <Input
@@ -105,7 +117,7 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
               color={inputTextColor}
             />
-            <FormLabel fontSize="sm" fontWeight="500" color={labelColor}>
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px" textAlign="right">
               كلمة المرور
             </FormLabel>
             <Input
@@ -120,7 +132,7 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
               color={inputTextColor}
             />
-            <FormLabel fontSize="sm" fontWeight="500" color={labelColor}>
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px" textAlign="right">
               تأكيد كلمة المرور
             </FormLabel>
             <Input

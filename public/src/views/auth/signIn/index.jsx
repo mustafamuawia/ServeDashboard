@@ -85,8 +85,9 @@ function SignIn() {
             </Text>
           </Box>
           <FormControl>
-            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px">
-              البريد الإلكتروني<Text color={textColorBrand}>*</Text>
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px" textAlign="right">
+              البريد الإلكتروني
+              <Text as="span" color={textColorBrand}> *</Text>
             </FormLabel>
             <Input
               isRequired={true}
@@ -103,8 +104,9 @@ function SignIn() {
               color={inputTextColor}
               _placeholder={{ color: inputTextColor }}
             />
-            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px">
-              كلمة المرور<Text color={textColorBrand}>*</Text>
+            <FormLabel fontSize="sm" fontWeight="500" color={labelColor} mb="8px" textAlign="right">
+              كلمة المرور
+              <Text as="span" color={textColorBrand}> *</Text>
             </FormLabel>
             <InputGroup size="md">
               <Input
@@ -133,7 +135,7 @@ function SignIn() {
             <Flex justifyContent="space-between" align="center" mb="24px">
               <FormControl display="flex" alignItems="center">
                 <Checkbox id="remember-login" colorScheme="brandScheme" me="10px" />
-                <FormLabel htmlFor="remember-login" mb="0" fontWeight="normal" color={textColor} fontSize="sm">
+                <FormLabel htmlFor="remember-login" mb="0" fontWeight="normal" color={textColor} fontSize="sm" textAlign="right">
                   تذكرني
                 </FormLabel>
               </FormControl>
